@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+</head>
+<body>
+    <h1>Task List</h1>
+    <a href="{% url 'task_add' %}">Add Task</a>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.title }}</strong><br>
+                {{ task.description }}<br>
+                Priority: {{ task.priority }}<br>
+                Status: {{ task.status }}<br>
+                <a href="{% url 'task_edit' task.id %}">Edit</a>
+                <a href="{% url 'task_delete' task.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>Filter by Priority</h2>
+    <a href="{% url 'task_filter_by_priority' 'High' %}">High</a>
+    <a href="{% url 'task_filter_by_priority' 'Medium' %}">Medium</a>
+    <a href="{% url 'task_filter_by_priority' 'Low' %}">Low</a>
+</body>
+</html>
